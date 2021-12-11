@@ -2,10 +2,11 @@
   <b-card no-body>
     <b-form @submit.stop.prevent="submit">
       <b-card-header>
-        <span>Crud</span>
+        <span>Create page</span>
       </b-card-header>
       <b-card-body>
-        <text-input label="Crud name" v-model="form.name" :errors="errors.name" v-on:input="form.name = $event"></text-input>
+        <text-input label="Page title" v-model="form.title" :errors="errors.title" v-on:input="form.title = $event"></text-input>
+        <text-input label="Page content" v-model="form.content" :errors="errors.content" v-on:input="form.content = $event"></text-input>
       </b-card-body>
       <b-card-footer>
         <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
@@ -21,28 +22,21 @@ import TextInput from "@/applications/Admin/components/form/TextInput";
 
 export default {
   name: "Create",
-  components: {TextInput, SelectInput},
+  components: {TextInput},
   data() {
     return {
-      selectOptions: [],
       form: {
-        name: '',
-        products: []
+        title: '',
+        content: ''
       },
-      errors: []
+      errors: {}
     }
-  },
-  async mounted() {
-    const products = await ApiService.get('/products')
-    this.selectOptions = products.data.map(element => {
-      return {value: element.id, text: element.name}
-    })
   },
   methods: {
     async submit() {
       this.errors = []
       try {
-        await ApiService.post('/crud', this.form)
+        await ApiService.post('/pages', this.form)
         this.$emit('resource-created')
         this.toast('Resource created.')
       } catch (error) {

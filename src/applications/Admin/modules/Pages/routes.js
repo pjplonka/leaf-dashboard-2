@@ -2,7 +2,7 @@ import Main from "./views/Main";
 
 export default [
   {
-    path: 'crud',
+    path: 'pages',
     component: Main,
     meta: {requiresAuth: true}
   }

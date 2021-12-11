@@ -1,8 +1,8 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <span>Crud</span>
-      <a @click="$emit('create-button-clicked')" class="float-right" style="cursor:pointer;">Add new</a>
+      <span>Pagess</span>
+      <a @click="$emit('create-button-clicked')" class="float-right" style="cursor:pointer;">Add new page</a>
     </b-card-header>
     <b-card-body>
       <b-table borderless :items="items" :fields="this.fields" thStyle="{color: 'red'}">
@@ -54,7 +54,9 @@ export default {
       }
     },
     async load() {
-      const resources = await ApiService.get('/crud');
+      // const resources = await ApiService.get('/pages');
+      const data = await ApiService.get('http://127.0.0.1:8000/api/pages')
+console.log(data)
       this.items = resources.data
     }
   }

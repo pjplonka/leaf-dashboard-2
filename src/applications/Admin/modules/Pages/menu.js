@@ -1,5 +1,5 @@
 export default {
-    to: '/crud',
+    to: '/pages',
     icon: 'bootstrap',
-    text: 'Crud',
+    text: 'Pages',
 };
