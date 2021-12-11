@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <span>Pagess</span>
+      <span>Pages</span>
       <a @click="$emit('create-button-clicked')" class="float-right" style="cursor:pointer;">Add new page</a>
     </b-card-header>
     <b-card-body>
@@ -46,17 +46,17 @@ export default {
         try {
           await ApiService.delete('/crud/' + id)
           this.$emit('resource-created')
-          this.toast('Resource removed.')
+          this.toast().success()
           this.load()
         } catch (error) {
-          this.toast('Something gone wrong.', 'danger')
+          this.toast().failure()
         }
       }
     },
     async load() {
       // const resources = await ApiService.get('/pages');
-      const data = await ApiService.get('http://127.0.0.1:8000/api/pages')
-console.log(data)
+      const data = await ApiService.get('/pages')
+
       this.items = resources.data
     }
   }
